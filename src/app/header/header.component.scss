@@ -1,0 +1,30 @@
+@import './../../assets/styles/imports';
+.header {
+  height: 100px;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $skyblue;
+}
+.header-logo {
+  &__link {
+    color: $white;
+  }
+}
+
+.header-nav {
+  list-style: none;
+}
+.header-list {
+  display: inline-block;
+  padding-right: 10px;
+  &:last-child {
+    padding-right: 0;
+  }
+}
+.header-link {
+  color: $white;
+  display: inline-block;
+}
