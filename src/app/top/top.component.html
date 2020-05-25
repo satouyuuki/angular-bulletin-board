@@ -1,14 +1,8 @@
 <div>
-  <a href="#">スレッド作成</a>
+  <a routerLink="/create">スレッド作成</a>
 </div>
 <ul>
-  <li>
-    <a href="#">スレッド1</a>
-  </li>
-  <li>
-    <a href="#">スレッド2</a>
-  </li>
-  <li>
-    <a href="#">スレッド3</a>
+  <li *ngFor="let article of articles">
+    <a routerLink="/detail/{{article.id}}">{{article.title}}</a>
   </li>
 </ul>
