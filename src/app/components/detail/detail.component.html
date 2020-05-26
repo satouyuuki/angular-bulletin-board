@@ -13,6 +13,10 @@
 </ng-container>
 <hr>
 <div>
-  <label for="post">投稿する</label>
-  <input type="text" id="post" name="post">
+  <label for="post">投稿文</label>
+  <input type="text" id="post" name="post" #post>
+</div>
+<div>
+  <button (click)="goBack()">戻る</button>
+  <button (click)="addComment(post)">投稿する</button>
 </div>

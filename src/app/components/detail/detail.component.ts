@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../../service/article.service';
-import { Article } from '../../mock/article';
+import { iArticle } from '../../interface/article';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 @Component({
@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent implements OnInit {
-  article: Article;
+  article: iArticle;
 
   constructor(
     private articleService: ArticleService,
@@ -26,6 +26,15 @@ export class DetailComponent implements OnInit {
     this.articleService.getArticles().subscribe((val) => {
       this.article = val.find(val1 => val1.id == id);
     });
+  }
+  goBack():void {
+    this.location.back();
+  }
+  addComment(post) {
+    // if (post.value) {
+    //   const comment = post.value;
+    //   this.articleService.addComment(comment);
+    // }
   }
 
 }
