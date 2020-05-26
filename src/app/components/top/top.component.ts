@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleService } from '../service/article.service';
-import { Article } from '../mock/article';
+import { ArticleService } from '../../service/article.service';
+import { Article } from '../../mock/article';
 
 @Component({
   selector: 'app-top',
@@ -16,6 +16,7 @@ export class TopComponent implements OnInit {
   ngOnInit(): void {
     this.articleService.getArticles().subscribe((article) => {
       this.articles = article;
+      console.log(this.articles);
     });
   }
 

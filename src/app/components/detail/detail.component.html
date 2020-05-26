@@ -1,0 +1,18 @@
+<p>タイトル: {{article?.title}}</p>
+<div>
+  説明: {{article?.desc}}
+</div>
+<hr>
+<ng-container
+  *ngFor="let comment of article?.comments"
+>
+  <div>
+    <p>名前: {{comment.name}}> {{comment.comment}}</p>
+    <span>日付: 2020/05/04</span>
+  </div>
+</ng-container>
+<hr>
+<div>
+  <label for="post">投稿する</label>
+  <input type="text" id="post" name="post">
+</div>

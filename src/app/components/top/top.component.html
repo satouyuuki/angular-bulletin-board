@@ -1,0 +1,12 @@
+<div>
+  <a routerLink="/create">スレッド作成</a>
+</div>
+<ul>
+  <ng-container
+    *ngFor="let article of articles"
+  >
+    <li>
+      <a routerLink="/detail/{{article.id}}">{{article.title}}</a>
+    </li>
+  </ng-container>
+</ul>

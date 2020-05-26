@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleService } from '../service/article.service';
-import { Article } from '../mock/article';
+import { ArticleService } from '../../service/article.service';
+import { Article } from '../../mock/article';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 @Component({
@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent implements OnInit {
-  article;
+  article: Article;
 
   constructor(
     private articleService: ArticleService,
@@ -20,13 +20,12 @@ export class DetailComponent implements OnInit {
   ngOnInit(): void {
     this.getDetailArticle();
   }
-
+  
   getDetailArticle() {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.articleService.getArticle(id).subscribe((val) => {
-      console.log(val);
-      this.article = val;
-    })
+    this.articleService.getArticles().subscribe((val) => {
+      this.article = val.find(val1 => val1.id == id);
+    });
   }
 
 }

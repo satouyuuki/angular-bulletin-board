@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TopComponent } from './top/top.component';
-import { DetailComponent } from './detail/detail.component';
-import { CreateComponent } from './create/create.component';
-import { LoginComponent } from './auth/login/login.component';
-import { SignupComponent } from './auth/signup/signup.component';
+import { TopComponent } from '../../app/components/top/top.component';
+import { DetailComponent } from '../../app/components/detail/detail.component';
+import { CreateComponent } from '../../app/components/create/create.component';
+import { LoginComponent } from '../../app/auth/login/login.component';
+import { SignupComponent } from '../../app/auth/signup/signup.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/top', pathMatch: 'full'},
