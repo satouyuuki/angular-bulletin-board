@@ -2,7 +2,7 @@
   <div class="header-logo">
     <a class="header-logo__link" routerLink="/">掲示板</a>
   </div>
-  <ul class="header-nav">
+  <ul class="header-nav" *ngIf="!login">
     <li class="header-list">
       <a 
       [routerLink]="['/account/login']" routerLinkActive="active"
@@ -16,4 +16,14 @@
       >SignUp</a>
     </li>
   </ul>
+  <ul class="header-nav" *ngIf="login">
+    <li class="header-list">
+      <a 
+      [routerLink]="['/account/login']" routerLinkActive="active"
+      class="header-link"
+      (click)="logout()"
+      >Logout</a>
+    </li>
+  </ul>
+
 </header>

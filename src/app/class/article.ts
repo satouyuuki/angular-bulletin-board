@@ -78,6 +78,18 @@ export class Comment {
   }
 }
 
+export class Session {
+  public login: boolean;
+
+  constructor() {
+    this.login = false;
+  }
+  reset(): Session {
+    this.login = false;
+    return this;
+  }
+}
+
 export class User {
   private _uid: number;
   private _name: string;
