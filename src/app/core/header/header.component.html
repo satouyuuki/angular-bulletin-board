@@ -4,10 +4,16 @@
   </div>
   <ul class="header-nav">
     <li class="header-list">
-      <a routerLink="/login" class="header-link">Login</a>
+      <a 
+      [routerLink]="['/account/login']" routerLinkActive="active"
+      class="header-link"
+      >Login</a>
     </li>
     <li class="header-list">
-      <a routerLink="/signup" class="header-link">SignUp</a>
+      <a 
+      [routerLink]="['/account/signup']" routerLinkActive="active"
+      class="header-link"
+      >SignUp</a>
     </li>
   </ul>
 </header>
