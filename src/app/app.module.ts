@@ -16,6 +16,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 // reactive form
 import { ReactiveFormsModule } from '@angular/forms';
+// template form
+import { FormsModule } from '@angular/forms';
+import { EditComponent } from './components/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     DetailComponent,
     CreateComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +38,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AngularFireAuthModule,
     AngularFirestoreModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

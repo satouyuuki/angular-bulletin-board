@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ArticleService } from '../../service/article.service';
-import { iArticle } from '../../interface/article';
+import { iArticle, iComment } from '../../interface/article';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 @Component({
@@ -31,7 +31,6 @@ export class DetailComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.articleService.getComments(id).subscribe(comment => {
       this.comments = comment;
-      console.log(this.comments);
     })
   }
   
@@ -50,6 +49,11 @@ export class DetailComponent implements OnInit {
   }
   deleteComment(aid: number, uid: number) {
     this.articleService.deleteComment(aid, uid);
+  }
+  updateComment(comment) {
+    console.log(comment);
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.articleService.updateComment(comment, id);
   }
 
 }

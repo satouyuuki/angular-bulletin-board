@@ -44,9 +44,16 @@ export class Comment {
   private _cid: number;
   protected user: User;
   private _comment: string;
+  public edit_flag: boolean = false;
   constructor(user: User) {
     this.user = user;
   }
+  // get edit_flag(): boolean {
+  //   return this._edit_flag;
+  // }
+  // set edit_flag(value: boolean) {
+  //   this._edit_flag = value;
+  // }
   get cid(): number {
     return this._cid;
   }

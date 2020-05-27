@@ -30,12 +30,10 @@ export class ArticleService {
       .pipe(
         map(actions => {
           this.collectionNum = actions.length;
-          console.log(this.collectionNum);
           return actions.map(action => {
             // const key = action.payload.doc.id;
             // const bar = Number(key.match(/\d+/));
             const data = action.payload.doc.data();
-            console.log(data);
             return data;
           })
         })
@@ -71,12 +69,10 @@ export class ArticleService {
       .pipe(
         map(actions => {
           this.commentNum = actions.length;
-          console.log(this.commentNum);
           return actions.map(action => {
             // const key = action.payload.doc.id;
             // const bar = Number(key.match(/\d+/));
             const data = action.payload.doc.data();
-            console.log(data);
             return data;
           })
         })
@@ -101,11 +97,24 @@ export class ArticleService {
     
     // id = this.db.createId();
   }
+  public editArticle(form, id: number) {
+    // this.collectionNum++;
+    let collectionId = id;
+    let article = new Article(this.current_user);
+    article.date = new Date();
+    article.title = form.title;
+    article.desc = form.desc;
+    article.aid = collectionId;
+    this.db
+      .collection('articles').doc(`article${article.aid}`)
+      .update(article.deserialize());
+  }
   public deleteArticle(id: number) {
     this.db
       .collection('articles')
       .doc(`article${id}`)
       .delete()
+
       .then(() => {
         alert('記事を削除しました');
       });
@@ -119,6 +128,21 @@ export class ArticleService {
       .delete()
       .then(() => {
         alert('コメントを削除しました');
+      });
+  }
+  public updateComment(comment, aid: number) {
+    let updateComment = new Comment(this.current_user);
+    updateComment.date = new Date();
+    updateComment.comment = comment._comment;
+    updateComment.cid = comment._cid;
+    this.db
+      .collection('articles')
+      .doc(`article${aid}`)
+      .collection('comments')
+      .doc(`comment${updateComment.cid}`)
+      .update(updateComment.deserialize())
+      .then(() => {
+        alert('コメントを編集しました');
       });
   }
   public getNavigate(path) {

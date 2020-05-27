@@ -1,20 +1,37 @@
-<p>タイトル: {{article._title}}</p>
+<p>タイトル: {{article?._title}}</p>
 <div>
-  説明: {{article._desc}}
+  説明: {{article?._desc}}
 </div>
 <div>
-  名前: {{article.user._name}}, 日付: {{article._date}}
+  名前: {{article?.user._name}}, 日付: {{article?._date}}
 </div>
 <hr>
 <ng-container
   *ngFor="let comment of comments"
 >
   <div>
-    <p>名前: {{comment.user._name}}> {{comment._comment}}</p>
+    <p>名前: {{comment.user._name}}</p>
     <span>日付: {{comment._date}}</span>
     <span (click)="deleteComment(article._aid, comment._cid)">
       x
     </span>
+    <label for="editFlag">編集</label>
+    <input 
+    type="checkbox"
+    id="editFlag"
+    [(ngModel)]="comment.edit_flag"
+    >
+    <ng-container *ngIf="!comment.edit_flag">
+      {{comment._comment}}
+    </ng-container>
+    <ng-container *ngIf="comment.edit_flag">
+      <input type="text" 
+        [(ngModel)]="comment._comment"
+        name="updateComment"
+      >
+      <button (click)="updateComment(comment)">編集</button>
+    </ng-container>
+
   </div>
 </ng-container>
 <hr>

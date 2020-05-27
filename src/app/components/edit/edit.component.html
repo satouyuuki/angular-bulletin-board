@@ -1,0 +1,22 @@
+<form [formGroup]="editArticleForm" (ngSubmit)="editArticle()">
+  <div>
+    <label for="title">スレッド名</label>
+    <input type="text" id="title" [formControlName]="'title'" required [value]="article?._title">
+  </div>
+  <div>
+    説明{{article?._desc}}
+  </div>
+  <div>
+    <label for="desc">説明</label>
+    <textarea 
+    id="desc" 
+    [formControlName]="'desc'"
+    [(ngModel)]="article._desc"
+    required
+    ></textarea>
+  </div>
+  <div class="flex-wrap">
+    <a class="button--stroke" (click)="goBack()">戻る</a>
+    <button type="submit" class="button--flat" [disabled]="!editArticleForm.valid">編集</button>
+  </div>
+</form>

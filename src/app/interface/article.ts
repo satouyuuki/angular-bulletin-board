@@ -1,16 +1,17 @@
 export interface iArticle {
-  id: number;
-  name: string;
-  // date: Date;
-  title: string;
-  desc: string;
-  comments: Array<any>;
+  _aid: number;
+  _title: string;
+  _desc: string;
+  _date: Date;
+  user: iUser;
 }
-export interface iArticle {
-  id: number;
-  name: string;
-  // date: Date;
-  title: string;
-  desc: string;
-  comments: Array<any>;
+export interface iComment {
+  _cid: number;
+  _date: Date;
+  comment: string;
+  user: iUser;
+}
+export interface iUser {
+  _uid: number;
+  _name: string;
 }
