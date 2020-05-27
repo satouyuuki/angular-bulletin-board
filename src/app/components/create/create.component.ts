@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ArticleService } from '../../service/article.service';
 import { iArticle } from '../../interface/article';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -16,17 +16,24 @@ export class CreateComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private articleService: ArticleService,
+    private location: Location
   ) {
 
    }
 
   ngOnInit(): void {
   }
+  
+  goBack(): void {
+    this.location.back();
+  }
 
   addArticle() {
-    this.articleService.addArticle(this.createArticleForm.value);
-    console.warn(this.createArticleForm.value);
-    this.articleService.getNavigate('/');
+    console.warn(typeof this.createArticleForm.value.title);
+    if (typeof this.createArticleForm.value.title !== "undefined") {
+      this.articleService.addArticle(this.createArticleForm.value);
+      // this.articleService.getNavigate('/');
+    }
   }
 
 }

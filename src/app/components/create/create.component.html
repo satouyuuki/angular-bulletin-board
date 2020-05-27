@@ -7,6 +7,8 @@
     <label for="desc">説明</label>
     <textarea id="desc" cols="30" rows="10" formControlName="desc" required></textarea>
   </div>
-  <a href="#" class="button--stroke">戻る</a>
-  <button type="submit" class="button--flat" [disabled]="!createArticleForm.valid">送信</button>
+  <div class="flex-wrap">
+    <a class="button--stroke" (click)="goBack()">戻る</a>
+    <button type="submit" class="button--flat" [disabled]="!createArticleForm.valid">送信</button>
+  </div>
 </form>

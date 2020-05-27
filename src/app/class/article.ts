@@ -2,11 +2,12 @@ export class Article {
   private _aid: number;
   private _title: string;
   private _desc: string;
+  private _date: Date;
   protected user: User;
-  protected comments: Comment[];
+  // protected comments: Comment[];
   constructor(user: User) {
     this.user = user;
-    this.comments = [];
+    // this.comments = [];
   }
   get aid(): number {
     return this._aid;
@@ -26,6 +27,12 @@ export class Article {
   set desc(value: string) {
     this._desc = value;
   }
+  get date(): Date {
+    return this._date;
+  }
+  set date(value: Date) {
+    this._date = value;
+  }
   deserialize() {
     this.user = this.user.deserialize();
     return Object.assign({}, this);
@@ -33,17 +40,18 @@ export class Article {
 }
 
 export class Comment {
-  private _aid: number;
+  private _date: Date;
+  private _cid: number;
   protected user: User;
   private _comment: string;
   constructor(user: User) {
     this.user = user;
   }
-  get aid(): number {
-    return this._aid;
+  get cid(): number {
+    return this._cid;
   }
-  set aid(value: number) {
-    this._aid = value;
+  set cid(value: number) {
+    this._cid = value;
   }
   get comment(): string {
     return this._comment;
@@ -51,7 +59,14 @@ export class Comment {
   set comment(value: string) {
     this._comment = value;
   }
+  get date(): Date {
+    return this._date;
+  }
+  set date(value: Date) {
+    this._date = value;
+  }
   deserialize() {
+    this.user = this.user.deserialize();
     return Object.assign({}, this);
   }
 }

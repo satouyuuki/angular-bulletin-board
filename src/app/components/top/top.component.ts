@@ -18,13 +18,14 @@ export class TopComponent implements OnInit, OnDestroy {
     this.getArticles();
   }
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
   getArticles(): void {
-    // this.articles = this.articleService.getArticles();
-    this.subscription = this.articleService.getArticles().subscribe(item => {
-      this.articles = item;
-    });
+    this.articles = this.articleService.getArticles();
+  }
+  deleteArticle(id) {
+    console.log(id);
+    this.articleService.deleteArticle(id);
   }
 
 }

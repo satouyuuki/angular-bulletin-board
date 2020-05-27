@@ -6,6 +6,8 @@
   border-radius: 10px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin: 8px;
 }
 .button {
   &--flat {
@@ -26,4 +28,8 @@
     color: $skyblue;
     border: 1px solid $skyblue;
   }
+}
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
 }

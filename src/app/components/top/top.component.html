@@ -3,10 +3,18 @@
 </div>
 <ul>
   <ng-container
-    *ngFor="let article of articles"
+    *ngFor="let article of articles | async"
   >
     <li>
-      <a routerLink="/detail/{{article._aid}}">{{article.title}}</a>
+      <a routerLink="/detail/{{article._aid}}">{{article._title}}</a>
+      <span>
+        {{article._date}}
+      </span>
+      <span
+      (click)="deleteArticle(article._aid)"
+      >
+        x
+      </span>
     </li>
   </ng-container>
 </ul>

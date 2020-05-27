@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ArticleService } from '../../service/article.service';
 import { iArticle } from '../../interface/article';
 import { ActivatedRoute } from '@angular/router';
@@ -9,32 +10,46 @@ import { Location } from '@angular/common';
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent implements OnInit {
+  commentForm = this.fb.group({
+    comment: ['', Validators.required],
+  });
   article: iArticle;
+  comments;
 
   constructor(
     private articleService: ArticleService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit(): void {
     this.getDetailArticle();
+    this.getComments();
+  }
+  getComments() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.articleService.getComments(id).subscribe(comment => {
+      this.comments = comment;
+      console.log(this.comments);
+    })
   }
   
   getDetailArticle() {
     const id = +this.route.snapshot.paramMap.get('id');
     this.articleService.getArticles().subscribe((val) => {
-      this.article = val.find(val1 => val1.id == id);
+      this.article = val.find(val => val._aid == id);
     });
   }
   goBack():void {
     this.location.back();
   }
-  addComment(post) {
-    // if (post.value) {
-    //   const comment = post.value;
-    //   this.articleService.addComment(comment);
-    // }
+  addComment() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.articleService.addComment(this.commentForm.value, id);
+  }
+  deleteComment(aid: number, uid: number) {
+    this.articleService.deleteComment(aid, uid);
   }
 
 }

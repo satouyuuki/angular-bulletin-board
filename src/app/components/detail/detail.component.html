@@ -1,22 +1,32 @@
-<p>タイトル: {{article?.title}}</p>
+<p>タイトル: {{article._title}}</p>
 <div>
-  説明: {{article?.desc}}
+  説明: {{article._desc}}
+</div>
+<div>
+  名前: {{article.user._name}}, 日付: {{article._date}}
 </div>
 <hr>
 <ng-container
-  *ngFor="let comment of article?.comments"
+  *ngFor="let comment of comments"
 >
   <div>
-    <p>名前: {{comment.name}}> {{comment.comment}}</p>
-    <span>日付: 2020/05/04</span>
+    <p>名前: {{comment.user._name}}> {{comment._comment}}</p>
+    <span>日付: {{comment._date}}</span>
+    <span (click)="deleteComment(article._aid, comment._cid)">
+      x
+    </span>
   </div>
 </ng-container>
 <hr>
-<div>
-  <label for="post">投稿文</label>
-  <input type="text" id="post" name="post" #post>
-</div>
-<div>
-  <button (click)="goBack()">戻る</button>
-  <button (click)="addComment(post)">投稿する</button>
-</div>
+<form [formGroup]="commentForm" (ngSubmit)="addComment()">
+  <div>
+    <label for="comment">投稿文</label>
+    <input type="text" id="comment" name="comment" formControlName="comment"
+    required
+    >
+  </div>
+  <div class="flex-wrap">
+    <a class="button--stroke" (click)="goBack()">戻る</a>
+    <button class="button--flat" type="submit">投稿する</button>
+  </div>
+</form>
