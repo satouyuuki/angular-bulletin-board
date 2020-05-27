@@ -1,0 +1,12 @@
+<form [formGroup]="createArticleForm" (ngSubmit)="addArticle()">
+  <div>
+    <label for="title">スレッド名</label>
+    <input type="text" id="title" formControlName="title" required>
+  </div>
+  <div>
+    <label for="desc">説明</label>
+    <textarea id="desc" cols="30" rows="10" formControlName="desc" required></textarea>
+  </div>
+  <a href="#" class="button--stroke">戻る</a>
+  <button type="submit" class="button--flat" [disabled]="!createArticleForm.valid">送信</button>
+</form>

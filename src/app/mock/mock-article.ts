@@ -1,6 +1,6 @@
-import { Article } from './article';
+import { iArticle } from '../interface/article';
 
-export const ARTICLES: Article[] = [
+export const ARTICLES: iArticle[] = [
   {
     id: 1,
     name: 'テスト太郎',

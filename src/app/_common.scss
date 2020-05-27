@@ -1,0 +1,29 @@
+@import '../assets/styles/imports';
+
+%button {
+  width: 100px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+.button {
+  &--flat {
+    @extend %button;
+    background: $skyblue;
+    color: $white;
+    &:disabled {
+      background: $grey;
+      color: $black;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  &--stroke {
+    @extend %button;
+    background: $white;
+    color: $skyblue;
+    border: 1px solid $skyblue;
+  }
+}

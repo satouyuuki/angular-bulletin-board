@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleService } from '../service/article.service';
-import { Article } from '../mock/article';
+import { ArticleService } from '../../service/article.service';
+import { iArticle } from '../../interface/article';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 @Component({
@@ -23,10 +23,10 @@ export class DetailComponent implements OnInit {
 
   getDetailArticle() {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.articleService.getArticle(id).subscribe((val) => {
-      console.log(val);
-      this.article = val;
-    })
+    // this.articleService.getArticle(id).subscribe((val) => {
+    //   console.log(val);
+    //   this.article = val;
+    // })
   }
 
 }

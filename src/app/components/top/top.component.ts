@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleService } from '../service/article.service';
-import { Article } from '../mock/article';
+import { ArticleService } from '../../service/article.service';
+import { iArticle } from '../../interface/article';
 
 @Component({
   selector: 'app-top',
@@ -8,7 +8,7 @@ import { Article } from '../mock/article';
   styleUrls: ['./top.component.scss']
 })
 export class TopComponent implements OnInit {
-  articles: Article[];
+  articles: iArticle[];
   constructor(
     private articleService: ArticleService
   ) { }
