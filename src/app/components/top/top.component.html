@@ -1,3 +1,7 @@
+<ng-container *ngFor="let messageInfo of messageInfoList; index as i">
+  <p>{{messageInfo.id}}</p>
+  <p>{{messageInfo.message}}</p>
+</ng-container>
 <div>
   <a routerLink="/create">スレッド作成</a>
 </div>

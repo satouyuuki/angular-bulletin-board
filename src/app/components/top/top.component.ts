@@ -9,6 +9,14 @@ import { iArticle } from '../../interface/article';
 })
 export class TopComponent implements OnInit {
   articles: iArticle[];
+  public param: any = {};
+  public messageInfo: any = {
+    id: null,
+    message: null
+  }
+  public messageInfoList: any = [this.messageInfo];
+  public messageId: number = 1;
+  public message: string = '';
   constructor(
     private articleService: ArticleService
   ) { }
@@ -17,6 +25,16 @@ export class TopComponent implements OnInit {
     this.articleService.getArticles().subscribe((article) => {
       this.articles = article;
     });
+    this.articleService.get()
+      .then(
+        (response) => {
+          this.param = response;
+          this.messageInfoList = this.param.messages;
+        }
+      )
+      .catch(
+        (error) => console.log(error)
+      );
   }
 
 }
