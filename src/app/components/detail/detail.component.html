@@ -1,49 +1,62 @@
-<p>タイトル: {{article?._title}}</p>
-<div>
-  説明: {{article?._desc}}
-</div>
-<div>
-  名前: {{article?.user.name}}, 日付: {{article?._date | jpdate}}
-</div>
-<hr>
-<ng-container
-  *ngFor="let comment of comments"
->
+<div class="container">
+  <h1>スレッド一覧</h1>
+  <p>スレッド名: {{article?._title}}</p>
   <div>
-    <p>名前: {{comment.user.name}}</p>
-    <span>日付: {{comment._date | jpdate}}</span>
-    <span (click)="deleteComment(article._aid, comment._cid)">
-      x
-    </span>
-    <label for="editFlag">編集</label>
-    <input 
-    type="checkbox"
-    id="editFlag"
-    [(ngModel)]="comment.edit_flag"
-    >
-    <ng-container *ngIf="!comment.edit_flag">
-      {{comment._comment}}
-    </ng-container>
-    <ng-container *ngIf="comment.edit_flag">
-      <input type="text" 
-        [(ngModel)]="comment._comment"
-        name="updateComment"
+    詳細: {{article?._desc}}
+  </div>
+  <div>
+    <p class="text">名前: {{article?.user.name}}, </p>
+    <span class="info">日付: {{article?._date | jpdate}}</span>
+  </div>
+  <hr>
+  <ng-container
+    *ngFor="let comment of comments"
+  >
+    <div class="flex-center-justify">
+      <div>
+        <p class="text">名前: {{comment.user.name}}</p>
+        <span class="info">日付: {{comment._date | jpdate}}</span>
+      </div>
+      <div>
+        <span 
+        class="deletebtn"
+        (click)="deleteComment(article._aid, comment._cid)">
+          x
+        </span>
+        <button
+          class="editbtn"
+          (click)="editFlagToggle(comment)"
+          >編集</button>
+      </div>
+    </div>
+    <div>
+      <ng-container *ngIf="!comment.edit_flag">
+        {{comment._comment}}
+      </ng-container>
+      <ng-container *ngIf="comment.edit_flag">
+        <textarea
+          class="text-area"
+          [(ngModel)]="comment._comment"
+          name="updateComment"
+        ></textarea>
+        <button 
+        class="editbtn"
+        (click)="updateComment(comment)">編集</button>
+      </ng-container>
+  
+    </div>
+  </ng-container>
+  <hr>
+  <form [formGroup]="commentForm" (ngSubmit)="addComment()">
+    <div class="form-control">
+      <label class="label" for="comment">投稿する</label>
+      <input class="input-area" type="text" id="comment" name="comment" formControlName="comment"
+      required
       >
-      <button (click)="updateComment(comment)">編集</button>
-    </ng-container>
-
-  </div>
-</ng-container>
-<hr>
-<form [formGroup]="commentForm" (ngSubmit)="addComment()">
-  <div>
-    <label for="comment">投稿文</label>
-    <input type="text" id="comment" name="comment" formControlName="comment"
-    required
-    >
-  </div>
-  <div class="flex-wrap">
-    <a class="button--stroke" (click)="goBack()">戻る</a>
-    <button class="button--flat" type="submit">投稿する</button>
-  </div>
-</form>
+    </div>
+    <div class="flex-wrap">
+      <a class="button--stroke" (click)="goBack()">戻る</a>
+      <button class="button--flat" type="submit">投稿する</button>
+    </div>
+  </form>
+</div>

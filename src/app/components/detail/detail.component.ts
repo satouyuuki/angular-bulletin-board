@@ -54,5 +54,8 @@ export class DetailComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.articleService.updateComment(comment, id);
   }
+  editFlagToggle(comment) {
+    comment.edit_flag = (!comment.edit_flag);
+  }
 
 }

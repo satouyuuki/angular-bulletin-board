@@ -1,14 +1,17 @@
-<form [formGroup]="createArticleForm" (ngSubmit)="addArticle()">
-  <div>
-    <label for="title">スレッド名</label>
-    <input type="text" id="title" formControlName="title" required>
-  </div>
-  <div>
-    <label for="desc">説明</label>
-    <textarea id="desc" cols="30" rows="10" formControlName="desc" required></textarea>
-  </div>
-  <div class="flex-wrap">
-    <a class="button--stroke" (click)="goBack()">戻る</a>
-    <button type="submit" class="button--flat" [disabled]="!createArticleForm.valid">送信</button>
-  </div>
-</form>
+<div class="container">
+  <h1>スレッド作成</h1>
+  <form [formGroup]="createArticleForm" (ngSubmit)="addArticle()">
+    <div class="form-control">
+      <label class="label" for="title">スレッド名</label>
+      <input class="input-area" type="text" id="title" formControlName="title" required>
+    </div>
+    <div class="form-control">
+      <label class="label" for="desc">説明</label>
+      <textarea class="text-area" id="desc" formControlName="desc" required></textarea>
+    </div>
+    <div class="flex-wrap">
+      <a class="button--stroke" (click)="goBack()">戻る</a>
+      <button type="submit" class="button--flat" [disabled]="!createArticleForm.valid">送信</button>
+    </div>
+  </form>
+</div>

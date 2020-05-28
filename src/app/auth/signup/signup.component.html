@@ -1,53 +1,59 @@
-<form (ngSubmit)="submitSignUp($event)" #signUpForm="ngForm">
-  <h1>Sign Up</h1>
-  <div>
-    <label for="name">name: </label>
-    <input 
-    type="text" 
-    id="name" 
-    name="name"
-    [(ngModel)]="account.name"
-    #name="ngModel"
-    required autofocus
-    >
-  </div>
-  <div>
-    <label for="email">email: </label>
-    <input 
-    type="email" 
-    id="email" 
-    name="email"
-    [(ngModel)]="account.email"
-    #email="ngModel"
-    required
-    >
-  </div>
-  <div>
-    <label for="password">password: </label>
-    <input 
-    type="text" 
-    id="password" 
-    name="password"
-    [(ngModel)]="account.password"
-    #password="ngModel"
-    required
-    >
-  </div>
-  <div>
-    <label for="passwordConfirmation">password: </label>
-    <input 
-    type="text" 
-    id="passwordConfirmation" 
-    name="password_confirmation"
-    [(ngModel)]="account.password_confirmation"
-    #password_confirmation="ngModel"
-    required
-    >
-  </div>
-  <button class="button--flat" type="submit" [disabled]="!signUpForm.form.valid">
-    SIGN UP
-  </button>
-</form>
-<a routerLink="/account/login">
-  ログインする
-</a>
+<div class="container">
+  <form (ngSubmit)="submitSignUp($event)" #signUpForm="ngForm">
+    <h1>Sign Up</h1>
+    <div class="form-control">
+      <label class="label" for="name">名前: </label>
+      <input 
+      class="input-area"
+      type="text" 
+      id="name" 
+      name="name"
+      [(ngModel)]="account.name"
+      #name="ngModel"
+      required autofocus
+      >
+    </div>
+    <div class="form-control">
+      <label class="label" for="email">email: </label>
+      <input 
+      class="input-area"
+      type="email" 
+      id="email" 
+      name="email"
+      [(ngModel)]="account.email"
+      #email="ngModel"
+      required
+      >
+    </div>
+    <div class="form-control">
+      <label class="label" for="password">password: </label>
+      <input 
+      class="input-area"
+      type="password" 
+      id="password" 
+      name="password"
+      [(ngModel)]="account.password"
+      #password="ngModel"
+      required
+      >
+    </div>
+    <div class="form-control">
+      <label class="label" for="passwordConfirmation">確認用 password: </label>
+      <input 
+      class="input-area"
+      type="password" 
+      id="passwordConfirmation" 
+      name="password_confirmation"
+      [(ngModel)]="account.password_confirmation"
+      #password_confirmation="ngModel"
+      required
+      >
+    </div>
+    <button class="button--flat" type="submit" [disabled]="!signUpForm.form.valid">
+      SIGN UP
+    </button>
+  </form>
+  <a routerLink="/account/login">
+    ログインする
+  </a>
+</div>

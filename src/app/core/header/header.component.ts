@@ -8,6 +8,7 @@ import { Session } from '../../class/article'
 })
 export class HeaderComponent implements OnInit {
   public login: boolean = false;
+  public username: string;
 
   constructor(
     public sessionService: SessionService
@@ -16,6 +17,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.sessionService.sessionState.subscribe((session: Session) => {
       if (session) {
+        console.log(session);
+        this.username = session.user.name;
         this.login = session.login;
       }
     })

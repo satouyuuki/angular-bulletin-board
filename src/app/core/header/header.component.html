@@ -18,6 +18,11 @@
   </ul>
   <ul class="header-nav" *ngIf="login">
     <li class="header-list">
+      <span class="header-link">
+        {{username}}さん ログイン中
+      </span>
+    </li>
+    <li class="header-list">
       <a 
       [routerLink]="['/account/login']" routerLinkActive="active"
       class="header-link"

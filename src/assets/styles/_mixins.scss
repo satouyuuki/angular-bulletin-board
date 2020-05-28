@@ -1,0 +1,6 @@
+@mixin baseStyle($fontSize: 14px, $fontWeight: 500, $color: $black, $lineHeight: 1.5) {
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  color: $color;
+  line-height: $lineHeight;
+}

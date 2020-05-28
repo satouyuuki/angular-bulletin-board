@@ -1,25 +1,30 @@
-<div>
-  <a routerLink="/create">スレッド作成</a>
+<div class="container">
+  <h1>簡易掲示板トップ</h1>
+  <div>
+    <a routerLink="/create">新しいスレッド作成</a>
+  </div>
+  <ul>
+    <ng-container
+      *ngFor="let article of articles | async"
+    >
+      <li class="flex-center-justify">
+        <a routerLink="/detail/{{article._aid}}">
+          <p class="text">{{article._title}}</p>
+          <span class="info">
+            {{article._date | jpdate}}
+          </span>
+        </a>
+        <div>
+          <span
+          class="deletebtn"
+          (click)="deleteArticle(article._aid)"
+          >x</span>
+          <a
+          class="editbtn"
+          routerLink="/edit/{{article._aid}}"
+          >編集</a>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
 </div>
-<ul>
-  <ng-container
-    *ngFor="let article of articles | async"
-  >
-    <li>
-      <a routerLink="/detail/{{article._aid}}">{{article._title}}</a>
-      <span>
-        {{article._date | jpdate}}
-      </span>
-      <span
-      (click)="deleteArticle(article._aid)"
-      >
-        x
-      </span>
-      <a
-      routerLink="/edit/{{article._aid}}"
-      >
-        編集
-      </a>
-    </li>
-  </ng-container>
-</ul>

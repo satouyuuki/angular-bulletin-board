@@ -7,7 +7,6 @@ import { SessionService } from './core/service/session.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'sy-bulletin-board';
   constructor(
     private session: SessionService
   ) {
