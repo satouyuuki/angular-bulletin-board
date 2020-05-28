@@ -90,6 +90,23 @@ export class Session {
   }
 }
 
+export class Password {
+  email: string;
+  password: string;
+  password_confirmation: string;
+
+  constructor() {
+    this.email = '';
+    this.password = '';
+    this.password_confirmation = '';
+  }
+  reset(): void {
+    this.email = '';
+    this.password = '';
+    this.password_confirmation = '';
+  }
+}
+
 export class User {
   private _uid: number;
   private _name: string;
