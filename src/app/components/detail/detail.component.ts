@@ -5,7 +5,6 @@ import { iArticle, iComment } from '../../interface/article';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { SessionService } from '../../core/service/session.service';
-import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',

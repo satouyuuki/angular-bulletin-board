@@ -4,10 +4,8 @@ export class Article {
   private _desc: string;
   private _date: number;
   protected user: User;
-  // protected comments: Comment[];
   constructor(user: User) {
     this.user = user;
-    // this.comments = [];
   }
   get aid(): number {
     return this._aid;
@@ -40,20 +38,14 @@ export class Article {
 }
 
 export class Comment {
-  private _date: number;
   private _cid: number;
-  protected user: User;
+  private _date: number;
   private _comment: string;
+  protected user: User;
   public edit_flag: boolean = false;
   constructor(user: User) {
     this.user = user;
   }
-  // get edit_flag(): boolean {
-  //   return this._edit_flag;
-  // }
-  // set edit_flag(value: boolean) {
-  //   this._edit_flag = value;
-  // }
   get cid(): number {
     return this._cid;
   }
@@ -94,10 +86,10 @@ export class Session {
 }
 
 export class Password {
-  name: string;
-  email: string;
-  password: string;
-  password_confirmation: string;
+  public name: string;
+  public email: string;
+  public password: string;
+  public password_confirmation: string;
 
   constructor() {
     this.name = '';

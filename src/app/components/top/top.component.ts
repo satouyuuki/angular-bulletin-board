@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../../service/article.service';
 import { iArticle } from '../../interface/article';
-import { Observable, Subscription } from 'rxjs';
 import { SessionService } from '../../core/service/session.service';
 @Component({
   selector: 'app-top',
@@ -10,16 +9,12 @@ import { SessionService } from '../../core/service/session.service';
 })
 export class TopComponent implements OnInit {
   public articles;
-  // public current_user;
   public sessionData;
 
-  // private subscription: Subscription;
   constructor(
     private articleService: ArticleService,
     private session: SessionService,
-  ) { 
-    
-  }
+  ) { }
   
   ngOnInit(): void {
     this.sessionData = this.session.session;

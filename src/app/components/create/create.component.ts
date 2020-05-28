@@ -32,7 +32,6 @@ export class CreateComponent implements OnInit {
     console.warn(typeof this.createArticleForm.value.title);
     if (typeof this.createArticleForm.value.title !== "undefined") {
       this.articleService.addArticle(this.createArticleForm.value);
-      // this.articleService.getNavigate('/');
     }
   }
 

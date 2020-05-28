@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Password } from '../../class/article'; // 追加
+import { Password } from '../../class/article';
 import { SessionService } from '../../core/service/session.service';
 @Component({
   selector: 'app-signup',
@@ -7,7 +7,7 @@ import { SessionService } from '../../core/service/session.service';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-  public account = new Password(); // 追加
+  public account = new Password();
 
   constructor(private session: SessionService) { }
 
@@ -15,7 +15,7 @@ export class SignupComponent implements OnInit {
   }
 
   // アカウント作成
-  submitSignUp(e: Event): void { // 追加
+  submitSignUp(e: Event): void {
     e.preventDefault();
     // パスワード確認
     if (this.account.password !== this.account.password_confirmation) {
@@ -23,7 +23,6 @@ export class SignupComponent implements OnInit {
       return;
     }
     this.session.signup(this.account);
-    // this.account.reset();
   }
 
 }
