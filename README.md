@@ -1,27 +1,43 @@
-# SyBulletinBoard
+# 簡易掲示板
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.2.
+### 使用技術
+* インフラ・バックエンド＝firebase
+* フロントエンド= angular(version9)
 
-## Development server
+### 対象のURL
+* アプリのURL
+https://sy-bulletin-board.firebaseapp.com
+* GitHub URL
+https://github.com/satouyuuki/angular-bulletin-board
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## ルーティング設計
 
-## Code scaffolding
+|URL|画面|
+|:---|:---|
+|/|トップページ |
+|/create|スレッド登録 |
+|/detail/{id}|スレッド詳細 |
+|/edit/{id}|スレッド編集 |
+|/account/login|ログイン画面|
+|/account/signup|アカウント登録画面|
+|/account/signup|アカウント登録画面|
+|TOTAL|合計6ページ|
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 実装した機能
+* CRUD
+* 認証
+* Guard
 
-## Build
+### 工夫した点
+コンポーネントとサービスを分け、コンポーネントにデータを持たせないようにした。
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Angularのguardを実装し、セッションによってページの出し分けをした。
 
-## Running unit tests
+自分のコメントのみ編集、削除可能。
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### 反省点
+単体テスト、e2eテストを時間があればやりたかったが手が回らなかった。
 
-## Running end-to-end tests
+validationをつけること
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+型をもう少し厳格にしたい。

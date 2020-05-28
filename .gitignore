@@ -47,3 +47,6 @@ Thumbs.db
 
 # memo
 memo.txt
+
+# firebase
+/.firebase
