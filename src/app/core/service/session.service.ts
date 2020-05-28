@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Session, Password } from '../../class/article';
-import { Subject } from 'rxjs';
+import { Session, Password, User } from '../../class/article';
+import { Subject, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from "@angular/fire/auth";
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap, take } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,16 +19,27 @@ export class SessionService {
 
   constructor(
     private router: Router,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private afs: AngularFirestore
   ) { }
-
+  
+  // ログイン状況確認
   public checkLogin(): void {
     this.afAuth
       .authState
+      .pipe(
+        switchMap(auth => {
+          if (!auth) {
+            return of(null);
+          } else {
+            return this.getUser(auth.uid);
+          }
+        })
+      )
       .subscribe(auth => {
-        console.log(auth);
         // ログイン状態を返り値の有無で判断
         this.session.login = (!!auth);
+        this.session.user = (auth) ? auth : new User();
         this.sessionSubject.next(this.session);
       });
   }
@@ -47,23 +60,55 @@ export class SessionService {
     this.afAuth
       .signOut()
       .then(() => {
-        this.sessionSubject.next(this.session.reset());
         return this.router.navigate(['/account/login']);
-      }).then(() => alert('ログアウトしました。'))
+      })
+      .then(() => {
+        this.sessionSubject.next(this.session.reset());
+        alert('ログアウトしました。')
+      })
       .catch(err => {
         console.log(err);
         alert('ログアウトに失敗しました。\n' + err);
       })
   }
   public signup(account: Password): void {
+    let auth;
     this.afAuth
       .createUserWithEmailAndPassword(account.email, account.password)
-      // .then(auth => auth.user.sendEmailVerification())
-      .then(() => alert('アカウントを登録しました'))
+      .then(_auth => {
+        _auth.user.updateProfile({
+          displayName: account.name
+        });
+        auth = _auth;
+      })
+      .then(() => {
+        return this.createUser(new User(auth.user.uid, account.name));
+      })
+      .then(() => {
+        account.reset();
+        alert('アカウントを登録しました');
+      })
       .catch(err => {
         console.log(err);
         alert('アカウントの作成に失敗しました。' + err);
       })
+  }
+  // ユーザーを作成
+  private createUser(user: User): Promise<void> {
+    return this.afs
+      .collection('users')
+      .doc(user.uid)
+      .set(user.deserialize());
+  }
+  private getUser(uid: string): Observable<any> {
+    return this.afs
+      .collection('users')
+      .doc(uid)
+      .valueChanges()
+      .pipe(
+        take(1),
+        switchMap((user: User) => of(new User(uid, user.name)))
+    )
   }
   public login(account: Password): void { // 変更
     this.afAuth

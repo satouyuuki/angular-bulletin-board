@@ -12,6 +12,6 @@ export interface iComment {
   user: iUser;
 }
 export interface iUser {
-  _uid: number;
-  _name: string;
+  uid: number;
+  name: string;
 }

@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { iArticle } from '../interface/article';
-// import { ARTICLES } from '../mock/mock-article';
 import { Observable, of } from 'rxjs';
 import { map, find } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { User, Article, Comment } from '../class/article';
 import { Router } from '@angular/router';
-const CURRENT_USER: User = new User(1, 'Tanaka Jiro');
-const ANOTHER_USER: User = new User(2, 'Suzuki Taro');
+import { SessionService } from '../core/service/session.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,18 +17,29 @@ export class ArticleService {
   // article: iArticle;
   collectionNum: number;
   commentNum: number;
-  public current_user = CURRENT_USER;
+  public current_user: User;
 
   constructor(
     private db: AngularFirestore,
     private router: Router,
+    private session: SessionService,
   ) { 
+    this.session
+      .sessionState
+      .subscribe(data => {
+        this.current_user = data.user;
+    })
     this.articles = db
       .collection<any>('articles')
       .snapshotChanges()
       .pipe(
         map(actions => {
-          this.collectionNum = actions.length;
+          if (actions.length > 0) {
+            this.collectionNum = actions.length;
+          }
+          else {
+            this.collectionNum = 0;
+          }
           return actions.map(action => {
             // const key = action.payload.doc.id;
             // const bar = Number(key.match(/\d+/));

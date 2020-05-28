@@ -22,9 +22,8 @@ export class SignupComponent implements OnInit {
       alert('パスワードが異なります。');
       return;
     }
-    console.log(this.account);
     this.session.signup(this.account);
-    this.account.reset();
+    // this.account.reset();
   }
 
 }

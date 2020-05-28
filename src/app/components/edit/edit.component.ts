@@ -32,7 +32,6 @@ export class EditComponent implements OnInit {
       title: ['', Validators.required],
       desc: ['', Validators.required]
     });
-    console.log(this.editArticleForm);
   }
 
   goBack(): void {

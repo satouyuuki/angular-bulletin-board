@@ -51,7 +51,6 @@ export class DetailComponent implements OnInit {
     this.articleService.deleteComment(aid, uid);
   }
   updateComment(comment) {
-    console.log(comment);
     const id = +this.route.snapshot.paramMap.get('id');
     this.articleService.updateComment(comment, id);
   }

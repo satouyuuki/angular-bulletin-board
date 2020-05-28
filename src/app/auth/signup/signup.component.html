@@ -1,6 +1,17 @@
 <form (ngSubmit)="submitSignUp($event)" #signUpForm="ngForm">
   <h1>Sign Up</h1>
   <div>
+    <label for="name">name: </label>
+    <input 
+    type="text" 
+    id="name" 
+    name="name"
+    [(ngModel)]="account.name"
+    #name="ngModel"
+    required autofocus
+    >
+  </div>
+  <div>
     <label for="email">email: </label>
     <input 
     type="email" 
@@ -8,7 +19,7 @@
     name="email"
     [(ngModel)]="account.email"
     #email="ngModel"
-    required autofocus
+    required
     >
   </div>
   <div>

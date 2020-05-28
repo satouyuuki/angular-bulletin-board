@@ -80,27 +80,33 @@ export class Comment {
 
 export class Session {
   public login: boolean;
+  public user;
 
   constructor() {
     this.login = false;
+    this.user = new User();
   }
   reset(): Session {
     this.login = false;
+    this.user = new User();
     return this;
   }
 }
 
 export class Password {
+  name: string;
   email: string;
   password: string;
   password_confirmation: string;
 
   constructor() {
+    this.name = '';
     this.email = '';
     this.password = '';
     this.password_confirmation = '';
   }
   reset(): void {
+    this.name = '';
     this.email = '';
     this.password = '';
     this.password_confirmation = '';
@@ -108,27 +114,13 @@ export class Password {
 }
 
 export class User {
-  private _uid: number;
-  private _name: string;
+  public uid: string;
+  public name: string;
 
-  constructor(_uid: number, _name: string) {
-    this._uid = _uid;
-    this._name = _name;
+  constructor(uid?: string, name?: string) {
+    this.uid =  (uid) ? uid : '';
+    this.name =  (name) ? name : '';
   }
-
-  get uid(): number {
-    return this._uid;
-  }
-  set uid(value: number) {
-    this._uid = value;
-  }
-  get name(): string {
-    return this._name;
-  }
-  set name(value: string) {
-    this._name = value;
-  }
-
   deserialize() {
     return Object.assign({}, this);
   }
