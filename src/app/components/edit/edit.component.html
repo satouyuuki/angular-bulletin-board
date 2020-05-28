@@ -1,18 +1,27 @@
 <div class="container">
   <h1>スレッド編集</h1>
-  <form [formGroup]="editArticleForm" (ngSubmit)="editArticle()">
+  <form #editArticleForm="ngForm" (ngSubmit)="editArticle()">
     <div class="form-control">
       <label class="label" for="title">スレッド名</label>
-      <input class="input-area" type="text" id="title" [formControlName]="'title'" required [value]="article?._title">
+      <input 
+      class="input-area" 
+      type="text" 
+      id="title" 
+      required 
+      [(ngModel)]="article._title"
+      name="title"
+      #title="ngModel"
+      >
     </div>
     <div class="form-control">
       <label class="label" for="desc">説明</label>
       <textarea 
       class="text-area"
       id="desc" 
-      [formControlName]="'desc'"
-      [(ngModel)]="article._desc"
       required
+      [(ngModel)]="article._desc"
+      name="desc"
+      #desc="ngModel"
       ></textarea>
     </div>
     <div class="flex-wrap">

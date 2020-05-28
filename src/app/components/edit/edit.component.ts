@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ArticleService } from '../../service/article.service';
 import { iArticle } from '../../interface/article';
 import { Location } from '@angular/common';
@@ -11,14 +10,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
-  editArticleForm; 
-  // editArticleForm = this.fb.group({
-  //   title: [this.article._title, Validators.required],
-  //   desc: ['', Validators.required]
-  // });
   article;
   constructor(
-    private fb: FormBuilder,
     private articleService: ArticleService,
     private location: Location,
     private route: ActivatedRoute,
@@ -28,10 +21,6 @@ export class EditComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSelectedArticle();
-    this.editArticleForm = this.fb.group({
-      title: ['', Validators.required],
-      desc: ['', Validators.required]
-    });
   }
 
   goBack(): void {
@@ -39,19 +28,13 @@ export class EditComponent implements OnInit {
   }
 
   editArticle() {
-    const id = +this.route.snapshot.paramMap.get('id');
-    if (typeof this.editArticleForm.value.title !== "undefined") {
-      this.articleService.editArticle(this.editArticleForm.value, id);
-    }
+    this.articleService.editArticle(this.article);
   }
+  
   getSelectedArticle() {
     const id = +this.route.snapshot.paramMap.get('id');
-    // this.article = this.articleService.getSelectedArticle(id);
-    // console.log(this.article);
     this.articleService.getArticles().subscribe(article => {
       this.article = article.find(val => val._aid == id);
     })
   }
-
-
 }

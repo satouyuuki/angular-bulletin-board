@@ -84,6 +84,7 @@ export class SessionService {
       .then(() => {
         return this.createUser(new User(auth.user.uid, account.name));
       })
+      .then(() => this.afAuth.signOut())
       .then(() => {
         account.reset();
         alert('アカウントを登録しました');

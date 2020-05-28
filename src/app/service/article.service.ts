@@ -29,7 +29,7 @@ export class ArticleService {
       .sessionState
       .subscribe(data => {
         this.current_user = data.user;
-    })
+      });
     this.articles = db
       .collection<any>('articles')
       .snapshotChanges()
@@ -42,8 +42,6 @@ export class ArticleService {
             this.collectionNum = 0;
           }
           return actions.map(action => {
-            // const key = action.payload.doc.id;
-            // const bar = Number(key.match(/\d+/));
             const data = action.payload.doc.data();
             return data;
           })
@@ -55,12 +53,9 @@ export class ArticleService {
   }
 
   public getArticles(): Observable<iArticle[]> {
-    // return of(ARTICLES);
-    // return this.article;
     return this.articles;
   }
   public addArticle(form) {
-    console.log(this.collectionNum);
     this.collectionNum++;
     let collectionId = this.collectionNum;
     let article = new Article(this.current_user);
@@ -70,7 +65,14 @@ export class ArticleService {
     article.aid = collectionId;
     this.db
       .collection('articles').doc(`article${article.aid}`)
-      .set(article.deserialize());
+      .set(article.deserialize())
+      .then(() => {
+        alert('新しいスレッドを作成しました');
+      })
+      .then(() => {
+        this.router.navigate(['/']);
+      });
+
   }
   public getComments(id: number) {
     return this.comments = this.db
@@ -82,8 +84,6 @@ export class ArticleService {
         map(actions => {
           this.commentNum = actions.length;
           return actions.map(action => {
-            // const key = action.payload.doc.id;
-            // const bar = Number(key.match(/\d+/));
             const data = action.payload.doc.data();
             return data;
           })
@@ -106,27 +106,28 @@ export class ArticleService {
       .set(
         comment.deserialize()
       );
-    
-    // id = this.db.createId();
   }
-  public editArticle(form, id: number) {
-    // this.collectionNum++;
-    let collectionId = id;
+  public editArticle(form) {
     let article = new Article(this.current_user);
     article.date = +moment();
-    article.title = form.title;
-    article.desc = form.desc;
-    article.aid = collectionId;
+    article.title = form._title;
+    article.desc = form._desc;
+    article.aid = form._aid;
     this.db
       .collection('articles').doc(`article${article.aid}`)
-      .update(article.deserialize());
+      .update(article.deserialize())
+      .then(() => {
+        alert('スレッドを更新しました');
+      })
+      .then(() => {
+        this.router.navigate(['/']);
+      });
   }
   public deleteArticle(id: number) {
     this.db
       .collection('articles')
       .doc(`article${id}`)
       .delete()
-
       .then(() => {
         alert('記事を削除しました');
       });
@@ -157,7 +158,7 @@ export class ArticleService {
         alert('コメントを編集しました');
       });
   }
-  public getNavigate(path) {
+  protected getNavigate(path) {
     this.router.navigate([path]);
   }
 }
