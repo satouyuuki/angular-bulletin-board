@@ -31,7 +31,9 @@ export class ArticleService {
         this.current_user = data.user;
       });
     this.articles = db
-      .collection<any>('articles')
+      .collection<any>('articles', ref => {
+        return ref.orderBy('_date', 'asc');
+      })
       .snapshotChanges()
       .pipe(
         map(actions => {
@@ -78,7 +80,9 @@ export class ArticleService {
     return this.comments = this.db
       .collection('articles')
       .doc(`article${id}`)
-      .collection('comments')
+      .collection('comments', ref => {
+        return ref.orderBy('_date', 'asc');
+      })
       .snapshotChanges()
       .pipe(
         map(actions => {
