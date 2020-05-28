@@ -10,8 +10,13 @@ service cloud.firestore {
     //
     // Make sure to write security rules for your app before that time, or else
     // your app will lose access to your Firestore database
-    match /{document=**} {
-      allow read, write: if request.time < timestamp.date(2020, 6, 25);
+    match /users/{userID} {
+      allow read, write: if request.auth.uid == userID;
+    }
+    match /articles/{document=**} {
+      allow read: if request.time < timestamp.date(2020, 6, 25);
+      allow create: if request.auth.uid != null;
+      allow update, delete: if request.auth.uid == resource.data.user.uid;
     }
   }
 }
