@@ -3,7 +3,7 @@
   説明: {{article?._desc}}
 </div>
 <div>
-  名前: {{article?.user.name}}, 日付: {{article?._date}}
+  名前: {{article?.user.name}}, 日付: {{article?._date | jpdate}}
 </div>
 <hr>
 <ng-container
@@ -11,7 +11,7 @@
 >
   <div>
     <p>名前: {{comment.user.name}}</p>
-    <span>日付: {{comment._date}}</span>
+    <span>日付: {{comment._date | jpdate}}</span>
     <span (click)="deleteComment(article._aid, comment._cid)">
       x
     </span>

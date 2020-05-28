@@ -2,7 +2,7 @@ export class Article {
   private _aid: number;
   private _title: string;
   private _desc: string;
-  private _date: Date;
+  private _date: number;
   protected user: User;
   // protected comments: Comment[];
   constructor(user: User) {
@@ -27,10 +27,10 @@ export class Article {
   set desc(value: string) {
     this._desc = value;
   }
-  get date(): Date {
+  get date(): number {
     return this._date;
   }
-  set date(value: Date) {
+  set date(value: number) {
     this._date = value;
   }
   deserialize() {
@@ -40,7 +40,7 @@ export class Article {
 }
 
 export class Comment {
-  private _date: Date;
+  private _date: number;
   private _cid: number;
   protected user: User;
   private _comment: string;
@@ -66,10 +66,10 @@ export class Comment {
   set comment(value: string) {
     this._comment = value;
   }
-  get date(): Date {
+  get date(): number {
     return this._date;
   }
-  set date(value: Date) {
+  set date(value: number) {
     this._date = value;
   }
   deserialize() {

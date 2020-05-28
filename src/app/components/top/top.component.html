@@ -8,7 +8,7 @@
     <li>
       <a routerLink="/detail/{{article._aid}}">{{article._title}}</a>
       <span>
-        {{article._date}}
+        {{article._date | jpdate}}
       </span>
       <span
       (click)="deleteArticle(article._aid)"

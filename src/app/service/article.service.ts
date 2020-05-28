@@ -6,6 +6,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { User, Article, Comment } from '../class/article';
 import { Router } from '@angular/router';
 import { SessionService } from '../core/service/session.service';
+import * as moment from 'moment';
 
 
 @Injectable({
@@ -59,10 +60,11 @@ export class ArticleService {
     return this.articles;
   }
   public addArticle(form) {
+    console.log(this.collectionNum);
     this.collectionNum++;
     let collectionId = this.collectionNum;
     let article = new Article(this.current_user);
-    article.date = new Date();
+    article.date = +moment();
     article.title = form.title;
     article.desc = form.desc;
     article.aid = collectionId;
@@ -93,7 +95,7 @@ export class ArticleService {
     this.commentNum++;
     let commentId = this.commentNum;
     let comment = new Comment(this.current_user);
-    comment.date = new Date();
+    comment.date = +moment();
     comment.comment = form.comment;
     comment.cid = commentId;
     this.db
@@ -111,7 +113,7 @@ export class ArticleService {
     // this.collectionNum++;
     let collectionId = id;
     let article = new Article(this.current_user);
-    article.date = new Date();
+    article.date = +moment();
     article.title = form.title;
     article.desc = form.desc;
     article.aid = collectionId;
@@ -142,7 +144,7 @@ export class ArticleService {
   }
   public updateComment(comment, aid: number) {
     let updateComment = new Comment(this.current_user);
-    updateComment.date = new Date();
+    updateComment.date = +moment();
     updateComment.comment = comment._comment;
     updateComment.cid = comment._cid;
     this.db
