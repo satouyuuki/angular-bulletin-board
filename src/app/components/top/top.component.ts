@@ -1,30 +1,34 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../../service/article.service';
 import { iArticle } from '../../interface/article';
 import { Observable, Subscription } from 'rxjs';
+import { SessionService } from '../../core/service/session.service';
 @Component({
   selector: 'app-top',
   templateUrl: './top.component.html',
   styleUrls: ['./top.component.scss']
 })
-export class TopComponent implements OnInit, OnDestroy {
+export class TopComponent implements OnInit {
   public articles;
-  private subscription: Subscription;
-  constructor(
-    private articleService: ArticleService
-  ) { }
+  // public current_user;
+  public sessionData;
 
-  ngOnInit(): void {
-    this.getArticles();
+  // private subscription: Subscription;
+  constructor(
+    private articleService: ArticleService,
+    private session: SessionService,
+  ) { 
+    
   }
-  ngOnDestroy(): void {
-    // this.subscription.unsubscribe();
+  
+  ngOnInit(): void {
+    this.sessionData = this.session.session;
+    this.getArticles();
   }
   getArticles(): void {
     this.articles = this.articleService.getArticles();
   }
   deleteArticle(id) {
-    console.log(id);
     this.articleService.deleteArticle(id);
   }
 

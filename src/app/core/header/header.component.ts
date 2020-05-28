@@ -17,13 +17,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.sessionService.sessionState.subscribe((session: Session) => {
       if (session) {
-        console.log(session);
         this.username = session.user.name;
         this.login = session.login;
       }
     })
-    // this.login = this.sessionService.session.login;
-    // console.log('header-component-login:' + this.login);
   }
 
   public logout(): void {

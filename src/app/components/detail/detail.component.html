@@ -17,7 +17,7 @@
         <p class="text">名前: {{comment.user.name}}</p>
         <span class="info">日付: {{comment._date | jpdate}}</span>
       </div>
-      <div>
+      <div *ngIf="comment.user.uid === sessionData.user.uid">
         <span 
         class="deletebtn"
         (click)="deleteComment(article._aid, comment._cid)">
@@ -29,7 +29,7 @@
           >編集</button>
       </div>
     </div>
-    <div>
+    <div class="form-control">
       <ng-container *ngIf="!comment.edit_flag">
         {{comment._comment}}
       </ng-container>

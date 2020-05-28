@@ -14,7 +14,7 @@
             {{article._date | jpdate}}
           </span>
         </a>
-        <div>
+        <div *ngIf="article.user.uid === sessionData.user.uid">
           <span
           class="deletebtn"
           (click)="deleteArticle(article._aid)"

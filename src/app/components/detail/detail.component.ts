@@ -4,6 +4,8 @@ import { ArticleService } from '../../service/article.service';
 import { iArticle, iComment } from '../../interface/article';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { SessionService } from '../../core/service/session.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -15,17 +17,19 @@ export class DetailComponent implements OnInit {
   });
   article: iArticle;
   comments;
-
+  public sessionData;
   constructor(
     private articleService: ArticleService,
     private route: ActivatedRoute,
     private location: Location,
     private fb: FormBuilder,
+    private session: SessionService,
   ) { }
 
   ngOnInit(): void {
     this.getDetailArticle();
     this.getComments();
+    this.sessionData = this.session.session;
   }
   getComments() {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -46,6 +50,7 @@ export class DetailComponent implements OnInit {
   addComment() {
     const id = +this.route.snapshot.paramMap.get('id');
     this.articleService.addComment(this.commentForm.value, id);
+    this.commentForm.setValue({comment: ''});
   }
   deleteComment(aid: number, uid: number) {
     this.articleService.deleteComment(aid, uid);

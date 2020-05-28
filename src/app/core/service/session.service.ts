@@ -116,7 +116,6 @@ export class SessionService {
       .signInWithEmailAndPassword(account.email, account.password)
       .then(auth => {
         // メールアドレス確認が済んでいるかどうか
-        // console.log(auth.user);
         if (!auth.user.email) {
           this.afAuth.signOut();
           return Promise.reject('メールアドレスが確認できていません。');
