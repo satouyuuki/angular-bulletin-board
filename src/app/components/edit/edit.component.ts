@@ -23,6 +23,10 @@ export class EditComponent implements OnInit {
     this.getSelectedArticle();
   }
 
+  resetForm(): void {
+    this.getSelectedArticle();
+  }
+
   goBack(): void {
     this.location.back();
   }

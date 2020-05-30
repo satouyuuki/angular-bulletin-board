@@ -19,7 +19,10 @@
             </p>
           </div>
         </a>
-        <div *ngIf="article.user.uid === sessionData.user.uid">
+        <div 
+        class="flex-right"
+        *ngIf="article.user.uid === sessionData.user.uid"
+        >
           <span
           class="deletebtn"
           (click)="deleteArticle(article._aid)"

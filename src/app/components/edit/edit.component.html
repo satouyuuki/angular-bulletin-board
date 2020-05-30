@@ -1,6 +1,6 @@
 <div class="container">
   <h1>スレッド編集</h1>
-  <form #editArticleForm="ngForm" (ngSubmit)="editArticle()">
+  <form #editArticleForm="ngForm">
     <div class="form-control">
       <label class="label" for="title">スレッド名</label>
       <input 
@@ -25,8 +25,16 @@
       ></textarea>
     </div>
     <div class="flex-wrap">
-      <a class="button--stroke" (click)="goBack()">戻る</a>
-      <button type="submit" class="button--flat" [disabled]="!editArticleForm.valid">編集</button>
+      <a class="button--stroke" (click)="resetForm()">リセット</a>
+      <button 
+      type="button" 
+      class="button--flat" 
+      [disabled]="!editArticleForm.valid"
+      (click)="editArticle()"
+      >編集</button>
     </div>
   </form>
+  <div class="mgt30">
+    <a class="arrow-text" (click)="goBack()">戻る</a>
+  </div>
 </div>

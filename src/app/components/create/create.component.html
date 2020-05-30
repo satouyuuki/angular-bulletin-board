@@ -10,8 +10,11 @@
       <textarea class="text-area" id="desc" formControlName="desc" required></textarea>
     </div>
     <div class="flex-wrap">
-      <a class="button--stroke" (click)="goBack()">戻る</a>
+      <a class="button--stroke" (click)="createArticleForm.reset()">リセット</a>
       <button type="submit" class="button--flat" [disabled]="!createArticleForm.valid">送信</button>
     </div>
   </form>
+  <div class="mgt30">
+    <a class="arrow-text" (click)="goBack()">戻る</a>
+  </div>
 </div>

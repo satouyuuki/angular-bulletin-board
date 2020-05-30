@@ -13,11 +13,11 @@ const routes: Routes = [
   {
     path: '',
     component: TopComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   { path: 'detail/:id', 
     component: DetailComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   { path: 'edit/:id', 
     component: EditComponent,
