@@ -9,6 +9,8 @@
   box-sizing: border-box;
   text-align: center;
   border-bottom: 4px solid $darkblue;
+  max-width: 500px;
+  margin: 0 auto;
   &:active {
     border-bottom: none;
     transform: translateY(4px);

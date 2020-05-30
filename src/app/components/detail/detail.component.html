@@ -22,8 +22,15 @@
           <textarea 
           class="login-input" 
           [(ngModel)]="comment._comment" 
-          name="updateComment"></textarea>
-          <button class="editbtn" (click)="updateComment(comment)">編集</button>
+          name="myComment"
+          #myComment="ngModel"
+          required
+          ></textarea>
+          <button 
+          class="button-mini--flat" 
+          (click)="updateComment(comment)"
+          [disabled]="!myComment.valid"
+          >編集</button>
         </ng-container>
       </div>
       <div 
@@ -35,9 +42,17 @@
           x
         </span>
         <button
+          *ngIf="!comment.edit_flag"
           class="editbtn"
           (click)="editFlagToggle(comment)"
-          >編集</button>
+          >編集
+        </button>
+        <button
+          *ngIf="comment.edit_flag"
+          class="editbtn"
+          (click)="editFlagToggle(comment)"
+          >戻る
+        </button>
       </div>
     </div>
     <div class="mgb15" [class.divider]="isLast">

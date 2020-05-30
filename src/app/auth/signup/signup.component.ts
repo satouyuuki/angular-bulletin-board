@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer2 } from '@angular/core';
 import { Password } from '../../class/article';
 import { SessionService } from '../../core/service/session.service';
 @Component({
@@ -6,12 +6,21 @@ import { SessionService } from '../../core/service/session.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, OnDestroy {
   public account = new Password();
 
-  constructor(private session: SessionService) { }
+  constructor(
+    private session: SessionService,
+    private renderer: Renderer2
+  ) { 
+    this.renderer.addClass(document.body, 'bg');
+  }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy() {
+    this.renderer.removeClass(document.body, 'bg');
   }
 
   // アカウント作成

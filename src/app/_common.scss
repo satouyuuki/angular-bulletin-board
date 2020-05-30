@@ -15,6 +15,16 @@
     outline: neno;
   }
 }
+%button-mini {
+  display: inline-block;
+  padding: 5px;
+  margin: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  &:focus-ring {
+    outline: neno;
+  }
+}
 .button {
   &--flat {
     @extend %button;
@@ -35,6 +45,26 @@
     border: 1px solid $skyblue;
   }
 }
+.button-mini {
+  &--flat {
+    @extend %button-mini;
+    background: $skyblue;
+    color: $white;
+    &:disabled {
+      background: $grey;
+      color: $black;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  &--stroke {
+    @extend %button-mini;
+    background: $white;
+    color: $skyblue;
+    border: 1px solid $skyblue;
+  }
+}
 .flex-wrap {
   display: flex;
   flex-wrap: wrap;
@@ -48,14 +78,6 @@
   flex-shrink: 0;
   align-self: flex-start;
 }
-// .flex-start-justify {
-//   display: flex;
-//   align-items: flex-start;
-//   justify-content: space-between;
-// }
-// .flex-self-center {
-//   align-self: center;
-// }
 .deletebtn {
     background: red;
     color: white;
@@ -84,6 +106,9 @@
   width: 90%;
   max-width: 960px;
   margin: 60px auto;
+}
+.heading {
+  text-align: center;
 }
 .text {
   @include baseStyle();
