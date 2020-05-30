@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>スレッド一覧</h1>
+  <h1>コメント一覧</h1>
   <div class="thread-head">
     <span class="title">{{article?._title}}</span>
   </div>
@@ -14,7 +14,7 @@
     *ngFor="let comment of comments;last as isLast"
   >
     <div class="flex-start-justify">
-      <div>
+      <div class="flex-self-center">
         <ng-container *ngIf="!comment.edit_flag">
           コメント: {{comment._comment}}
         </ng-container>

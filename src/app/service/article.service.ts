@@ -149,7 +149,7 @@ export class ArticleService {
   }
   public updateComment(comment, aid: number) {
     let updateComment = new Comment(this.current_user);
-    updateComment.date = +moment();
+    updateComment.date = comment._date;
     updateComment.comment = comment._comment;
     updateComment.cid = comment._cid;
     this.db

@@ -1,11 +1,16 @@
 // @import '../../../assets/styles/imports';
 @import '../../common';
 .block-btn {
-  background: $skyblue;
+  background: $blue;
   color: $white;
   display: block;
   padding: 10px;
   border-radius: 10px;
   box-sizing: border-box;
   text-align: center;
+  border-bottom: 4px solid $darkblue;
+  &:active {
+    border-bottom: none;
+    transform: translateY(4px);
+  }
 }

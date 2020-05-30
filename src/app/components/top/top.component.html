@@ -9,10 +9,15 @@
     >
       <li class="flex-center-justify mgb15">
         <a routerLink="/detail/{{article._aid}}">
-          <p class="text">{{article._title}}</p>
-          <span class="info">
-            {{article._date | jpdate}}
-          </span>
+          <p class="title navigate-link">{{article._title}}</p>
+          <div class="mgb10">
+            <span class="info">
+              {{article._date | jpdate}}
+            </span>
+            <p class="text">
+              {{article.user.name}}
+            </p>
+          </div>
         </a>
         <div *ngIf="article.user.uid === sessionData.user.uid">
           <span

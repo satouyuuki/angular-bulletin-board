@@ -67,7 +67,7 @@ export class SessionService {
         alert('ログアウトしました。')
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
         alert('ログアウトに失敗しました。\n' + err);
       })
   }
@@ -90,7 +90,7 @@ export class SessionService {
         alert('アカウントを登録しました');
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
         alert('アカウントの作成に失敗しました。' + err);
       })
   }
@@ -127,7 +127,7 @@ export class SessionService {
       })
       .then(() => alert('ログインしました。'))
       .catch(err => {
-        console.log(err);
+        // console.log(err);
         alert('ログインに失敗しました。\n' + err);
       })
   }

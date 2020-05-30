@@ -10,6 +10,9 @@
   justify-content: center;
   margin: 8px;
   cursor: pointer;
+  &:focus-ring {
+    outline: neno;
+  }
 }
 .button {
   &--flat {
@@ -44,6 +47,9 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+}
+.flex-self-center {
+  align-self: center;
 }
 .deletebtn {
     background: red;
