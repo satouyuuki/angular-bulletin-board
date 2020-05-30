@@ -1,2 +1,11 @@
 // @import '../../../assets/styles/imports';
 @import '../../common';
+.block-btn {
+  background: $skyblue;
+  color: $white;
+  display: block;
+  padding: 10px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  text-align: center;
+}

@@ -1,59 +1,67 @@
-<div class="container">
+<div class="card">
   <form (ngSubmit)="submitSignUp($event)" #signUpForm="ngForm">
-    <h1>Sign Up</h1>
-    <div class="form-control">
+    <h1 class="card__head">Sign Up</h1>
+    <div class="card__body">
       <label class="label" for="name">名前: </label>
       <input 
-      class="input-area"
+      class="login-input"
       type="text" 
       id="name" 
       name="name"
       [(ngModel)]="account.name"
       #name="ngModel"
-      required autofocus
+      required
+      placeholder="name" autofocus
       >
     </div>
-    <div class="form-control">
+    <div class="card__body">
       <label class="label" for="email">email: </label>
       <input 
-      class="input-area"
+      class="login-input"
       type="email" 
       id="email" 
       name="email"
       [(ngModel)]="account.email"
       #email="ngModel"
       required
+      placeholder="email"
       >
     </div>
-    <div class="form-control">
+    <div class="card__body">
       <label class="label" for="password">password: </label>
       <input 
-      class="input-area"
+      class="login-input"
       type="password" 
       id="password" 
       name="password"
       [(ngModel)]="account.password"
       #password="ngModel"
       required
+      placeholder="password"
       >
     </div>
-    <div class="form-control">
+    <div class="card__body">
       <label class="label" for="passwordConfirmation">確認用 password: </label>
       <input 
-      class="input-area"
+      class="login-input"
       type="password" 
       id="passwordConfirmation" 
       name="password_confirmation"
       [(ngModel)]="account.password_confirmation"
       #password_confirmation="ngModel"
       required
+      placeholder="password"
       >
     </div>
-    <button class="button--flat" type="submit" [disabled]="!signUpForm.form.valid">
-      SIGN UP
-    </button>
+    <div class="card__bottom">
+      <button class="button--flat" type="submit" [disabled]="!signUpForm.form.valid">
+        SIGN UP
+      </button>
+    </div>
+    <div class="card__body">
+      <a class="navigate-link" routerLink="/account/login">
+        ログインする
+      </a>
+    </div>
   </form>
-  <a routerLink="/account/login">
-    ログインする
-  </a>
 </div>

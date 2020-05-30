@@ -4,11 +4,11 @@
     <div class="form-control">
       <label class="label" for="title">スレッド名</label>
       <input 
-      class="input-area" 
+      class="login-input" 
       type="text" 
       id="title" 
       required 
-      [(ngModel)]="article._title"
+      [(ngModel)]="article && article._title"
       name="title"
       #title="ngModel"
       >
@@ -19,7 +19,7 @@
       class="text-area"
       id="desc" 
       required
-      [(ngModel)]="article._desc"
+      [(ngModel)]="article && article._desc"
       name="desc"
       #desc="ngModel"
       ></textarea>

@@ -1,4 +1,5 @@
 @import '../assets/styles/imports';
+@import './mgb';
 
 %button {
   width: 100px;
@@ -8,6 +9,7 @@
   align-items: center;
   justify-content: center;
   margin: 8px;
+  cursor: pointer;
 }
 .button {
   &--flat {
@@ -36,6 +38,11 @@
 .flex-center-justify {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+.flex-start-justify {
+  display: flex;
+  align-items: flex-start;
   justify-content: space-between;
 }
 .deletebtn {
@@ -71,15 +78,21 @@
   @include baseStyle();
   margin: 0;
 }
+.title {
+  @include baseStyle($fontSize: 18px, $fontWeight: 600);
+  margin: 0;
+}
 .label {
   display: block;
   margin-bottom: 10px;
 }
 .input-area {
   width: 100%;
-  height: 30px;
+  height: auto;
   border-radius: 4px;
   border: 3px solid #ccc;
+  padding: 8px;
+  box-sizing: border-box;
 }
 .text-area {
   width: 100%;
@@ -89,4 +102,23 @@
 }
 .form-control {
   margin-bottom: 15px;
+}
+
+.navigate-link {
+  transition: color .5s;
+  &:hover {
+    color: $skyblue;
+  }
+}
+
+.login-input {
+  border: none;
+  border-bottom: 1px solid #999;
+  padding: 8px;
+  box-sizing: border-box;
+  width: 100%;
+  &:focus {
+    border-bottom: 1px solid $skyblue;
+    outline: none;
+  }
 }

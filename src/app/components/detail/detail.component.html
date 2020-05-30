@@ -1,21 +1,30 @@
 <div class="container">
   <h1>スレッド一覧</h1>
-  <p>スレッド名: {{article?._title}}</p>
-  <div>
-    詳細: {{article?._desc}}
+  <div class="thread-head">
+    <span class="title">{{article?._title}}</span>
   </div>
-  <div>
-    <p class="text">名前: {{article?.user.name}}, </p>
+  <div class="mgb10">
     <span class="info">日付: {{article?._date | jpdate}}</span>
+    <p class="text">名前: {{article?.user.name}} </p>
   </div>
-  <hr>
+  <div class="divider">
+    {{article?._desc}}
+  </div>
   <ng-container
-    *ngFor="let comment of comments"
+    *ngFor="let comment of comments;last as isLast"
   >
-    <div class="flex-center-justify">
+    <div class="flex-start-justify">
       <div>
-        <p class="text">名前: {{comment.user.name}}</p>
-        <span class="info">日付: {{comment._date | jpdate}}</span>
+        <ng-container *ngIf="!comment.edit_flag">
+          コメント: {{comment._comment}}
+        </ng-container>
+        <ng-container *ngIf="comment.edit_flag">
+          <textarea 
+          class="login-input" 
+          [(ngModel)]="comment._comment" 
+          name="updateComment"></textarea>
+          <button class="editbtn" (click)="updateComment(comment)">編集</button>
+        </ng-container>
       </div>
       <div *ngIf="comment.user.uid === sessionData.user.uid">
         <span 
@@ -29,34 +38,26 @@
           >編集</button>
       </div>
     </div>
-    <div class="form-control">
-      <ng-container *ngIf="!comment.edit_flag">
-        {{comment._comment}}
-      </ng-container>
-      <ng-container *ngIf="comment.edit_flag">
-        <textarea
-          class="text-area"
-          [(ngModel)]="comment._comment"
-          name="updateComment"
-        ></textarea>
-        <button 
-        class="editbtn"
-        (click)="updateComment(comment)">編集</button>
-      </ng-container>
-  
+    <div class="mgb15" [class.divider]="isLast">
+      <span class="info">日付: {{comment._date | jpdate}}</span>
+      <p class="text">名前: {{comment.user.name}}</p>
     </div>
   </ng-container>
-  <hr>
   <form [formGroup]="commentForm" (ngSubmit)="addComment()">
     <div class="form-control">
-      <label class="label" for="comment">投稿する</label>
-      <input class="input-area" type="text" id="comment" name="comment" formControlName="comment"
+      <textarea id="comment" name="comment" formControlName="comment"
       required
-      >
+      class="login-input"
+      placeholder="コメントを送信する"
+      ></textarea>
     </div>
     <div class="flex-wrap">
       <a class="button--stroke" (click)="goBack()">戻る</a>
-      <button class="button--flat" type="submit">投稿する</button>
+      <button 
+      class="button--flat" 
+      type="submit"
+      [disabled]="!commentForm.valid"
+      >投稿する</button>
     </div>
   </form>
 </div>

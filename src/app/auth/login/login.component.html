@@ -1,14 +1,16 @@
-<div class="container">
+<div class="card">
   <form (ngSubmit)="submitLogin($event)" #loginForm="ngForm">
-    <h1>Login</h1>
-    <div class="form-control">
+    <h1 class="card__head">Login</h1>
+    <div class="card__body">
       <label class="label" for="email">email: </label>
-      <input class="input-area" type="email" id="email" name="email" [(ngModel)]="account.email" #email="ngModel" required autofocus>
+      <input class="login-input" type="email" id="email" name="email" [(ngModel)]="account.email" #email="ngModel" required autofocus placeholder="email">
     </div>
-    <div class="form-control">
+    <div class="card__body">
       <label class="label" for="password">password: </label>
-      <input class="input-area" type="password" id="password" name="password" [(ngModel)]="account.password" #password="ngModel" required>
+      <input class="login-input" type="password" id="password" name="password" [(ngModel)]="account.password" #password="ngModel" required placeholder="password">
     </div>
-    <button class="button--flat" type="submit" [disabled]="!loginForm.form.valid">ログイン</button>
+    <div class="card__bottom">
+      <button class="button--flat" type="submit" [disabled]="!loginForm.form.valid">ログイン</button>
+    </div>
   </form>
 </div>

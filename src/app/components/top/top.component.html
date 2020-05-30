@@ -1,13 +1,13 @@
 <div class="container">
   <h1>簡易掲示板トップ</h1>
-  <div>
-    <a routerLink="/create">新しいスレッド作成</a>
+  <div class="mgb30">
+    <a class="block-btn" routerLink="/create">新しいスレッド作成</a>
   </div>
   <ul>
     <ng-container
       *ngFor="let article of articles | async"
     >
-      <li class="flex-center-justify">
+      <li class="flex-center-justify mgb15">
         <a routerLink="/detail/{{article._aid}}">
           <p class="text">{{article._title}}</p>
           <span class="info">
